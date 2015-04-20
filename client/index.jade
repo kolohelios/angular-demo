@@ -5,7 +5,7 @@ html(lang='en', ng-app='alpha')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Angular Demo
-    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cerulean/bootstrap.min.css')
     link(rel='stylesheet', href='/vendor/font-awesome/css/font-awesome.min.css')
     link(rel='stylesheet', href=isProd ? '/index.min.css' : '/index.css')
     link(rel='shortcut icon', href='/favicon.ico')
@@ -14,7 +14,24 @@ html(lang='en', ng-app='alpha')
       script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
   body
     h1 Angular Demo
-    .container-fluid
+    .container
+      .row(ng-controller='listfun')
+        .col-xs-12
+          h1 List Fun
+          .row
+            .col-xs-6
+              input(type='text', ng-model='string')
+            .col-xs-6
+              input(type='text', ng-model='newNum')
+              button(ng-click='addNum(newNum)') Add Number
+          button(ng-click='compute(string)') Compute
+          #numberlist
+            .row
+              .col-xs-6
+                p.number(ng-repeat='num in array track by $index', style='background-color:{{colorOfNumber(num)}}', ng-click='removeListItem($index)') {{num}}
+              .col-xs-6
+                input(type='text', value='{{sum}}')
+                input(type='text', value='{{product}}')
       .row(ng-controller='rainbow')
         .col-xs-12
           h1 Rainbow
